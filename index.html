@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>REPUBLIC RT</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* =========================
+       MAIN SCREEN
+    ========================= */
+
+    .main-page {
+      position: fixed;
+      inset: 0;
+
+      width: 100vw;
+      height: 100vh;
+
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* =========================
+       MAIN IMAGE
+    ========================= */
+
+    .main-image {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+      object-position: center;
+
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* =========================
+       INVISIBLE CONTINUE AREA
+       The visible CONTINUE text
+       is already inside main.png
+    ========================= */
+
+    .continue-area {
+      position: absolute;
+
+      right: 2%;
+      bottom: 4%;
+
+      width: 28%;
+      height: 8%;
+
+      border: none;
+      background: transparent;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .continue-area:focus {
+      outline: none;
+    }
+
+    /* =========================
+       PAGE FADE
+    ========================= */
+
+    .main-page.fade-out {
+      animation: pageFadeOut 0.8s ease forwards;
+    }
+
+    @keyframes pageFadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .continue-area {
+        right: 2%;
+        bottom: 4%;
+
+        width: 32%;
+        height: 8%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main
+    id="mainPage"
+    class="main-page"
+  >
+
+    <!-- COMPLETE MAIN SCREEN IMAGE -->
+    <img
+      src="main.png"
+      class="main-image"
+      alt="REPUBLIC RT Main Screen"
+    >
+
+    <!-- Invisible clickable area over CONTINUE -->
+    <button
+      id="continueBtn"
+      class="continue-area"
+      type="button"
+      aria-label="Continue"
+    ></button>
+
+  </main>
+
+  <script>
+
+    const mainPage =
+      document.getElementById("mainPage");
+
+    const continueBtn =
+      document.getElementById("continueBtn");
+
+
+    continueBtn.addEventListener("click", () => {
+
+      mainPage.classList.add("fade-out");
+
+    });
+
+  </script>
+
+</body>
+  </html>
