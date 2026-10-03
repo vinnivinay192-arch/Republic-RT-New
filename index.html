@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>REPUBLIC RT</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .main-page {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .background {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* =========================
+       MAIN IMAGE
+       Used only to reveal
+       logo, name and continue
+    ========================= */
+
+    .reveal-image {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+      object-position: center;
+
+      display: block;
+
+      opacity: 0;
+
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Logo area */
+
+    .logo {
+      clip-path: inset(15% 25% 74% 52%);
+      animation: appear 0.5s ease forwards;
+      animation-delay: 1s;
+    }
+
+    /* REPUBLIC RT name */
+
+    .title {
+      clip-path: inset(25% 10% 67% 35%);
+      animation: appear 0.5s ease forwards;
+      animation-delay: 3s;
+    }
+
+    /* CONTINUE */
+
+    .continue-visual {
+      clip-path: inset(68% 2% 20% 70%);
+      animation: appear 0.5s ease forwards;
+      animation-delay: 5s;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* =========================
+       INVISIBLE CONTINUE BUTTON
+    ========================= */
+
+    .continue-area {
+      position: absolute;
+
+      right: 2%;
+      bottom: 4%;
+
+      width: 28%;
+      height: 9%;
+
+      border: none;
+      background: transparent;
+
+      cursor: pointer;
+
+      opacity: 0;
+      pointer-events: none;
+
+      animation: buttonAppear 0.5s ease forwards;
+      animation-delay: 5s;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @keyframes buttonAppear {
+      from {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      to {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .continue-area:focus {
+      outline: none;
+    }
+
+    /* =========================
+       FADE OUT
+    ========================= */
+
+    .main-page.fade-out {
+      animation: pageFadeOut 0.5s ease forwards;
+    }
+
+    @keyframes pageFadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .continue-area {
+        right: 2%;
+        bottom: 4%;
+
+        width: 32%;
+        height: 9%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main
+    id="mainPage"
+    class="main-page"
+  >
+
+    <!-- Background appears immediately -->
+    <img
+      src="background.png"
+      class="background"
+      alt="REPUBLIC RT Background"
+    >
+
+    <!-- Logo appears at 1 second -->
+    <img
+      src="main.png"
+      class="reveal-image logo"
+      alt=""
+    >
+
+    <!-- REPUBLIC RT appears at 3 seconds -->
+    <img
+      src="main.png"
+      class="reveal-image title"
+      alt=""
+    >
+
+    <!-- CONTINUE appears at 5 seconds -->
+    <img
+      src="main.png"
+      class="reveal-image continue-visual"
+      alt=""
+    >
+
+    <!-- Invisible clickable Continue area -->
+    <button
+      id="continueBtn"
+      class="continue-area"
+      type="button"
+      aria-label="Continue"
+    ></button>
+
+  </main>
+
+  <script>
+
+    const mainPage =
+      document.getElementById("mainPage");
+
+    const continueBtn =
+      document.getElementById("continueBtn");
+
+    continueBtn.addEventListener("click", () => {
+
+      /* Immediate 0.5 second fade */
+      mainPage.classList.add("fade-out");
+
+    });
+
+  </script>
+
+</body>
+  </html>
